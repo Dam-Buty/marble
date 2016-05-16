@@ -96,8 +96,11 @@ module.exports = {
               };
             });
 
+            console.warn(handle + " crawled");
+
             resolve({
               id:           channel.id,
+              handle:       handle,
               type:         "youtube",
               title:        channel.snippet.title,
               description:  channel.snippet.description,

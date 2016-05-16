@@ -1,5 +1,6 @@
 const Twitter = require("twit");
 const keys = require("../credentials").twitter;
+const console = require("better-console");
 
 module.exports = {
   Twitter: Twitter,
@@ -34,10 +35,38 @@ module.exports = {
   },
 
   listChannel: function(handle) {
-    return this.Twitter.get("statuses/user_timeline", { screen_name: handle })
-    .catch(err => {
-      console.log(err);
-      reject();
+    return new Promise((resolve, reject) => {
+      var done = false;
+      var chapters = [];
+      var opts = {
+        screen_name: handle,
+        trim_user: true,
+        count: 100
+      };
+
+      var loop = (max_id) => {
+        if (max_id) {
+          opts.max_id = max_id;
+        }
+
+        this.Twitter.get("statuses/user_timeline", opts, (err, data) => {
+          if (err) {
+            console.error(err);
+            reject();
+          } else {
+            chapters = chapters.concat(data);
+
+            if (data.length < 100) {
+              console.log(data.length);
+              resolve(chapters);
+            } else {
+              loop(data.pop().id);
+            }
+          }
+        });
+      };
+
+      loop();
     });
   },
 
@@ -49,7 +78,7 @@ module.exports = {
           var channel = res.data[0];
 
           this.listChannel(handle).then(res => {
-            var chapters = res.data.map(chapter => {
+            var chapters = res.map(chapter => {
               var media = [];
 
               if (chapter.entities.media) {
@@ -64,8 +93,11 @@ module.exports = {
               };
             });
 
+            console.warn(handle + " crawled");
+
             resolve({
               id:           channel.id,
+              handle:       handle,
               type:         "twitter",
               title:        channel.name,
               description:  channel.description,
