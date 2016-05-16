@@ -1,0 +1,21 @@
+{
+  "name": "marble-reader",
+  "version": "0.0.1",
+  "description": "An immersive web-fiction viewer",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --watch"
+  },
+  "author": "Damien BUTY",
+  "license": "ISC",
+  "dependencies": {
+    "twit": "^2.2.4",
+    "twitter-api": "^1.0.4",
+    "youtube-api": "^2.0.1"
+  },
+  "devDependencies": {
+    "better-console": "^0.2.4",
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  }
+}
