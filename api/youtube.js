@@ -1,5 +1,6 @@
 const Youtube = require("youtube-api");
 const key = require("../credentials").youtube;
+const console = require("better-console");
 
 module.exports = {
   Youtube: Youtube,
@@ -44,19 +45,36 @@ module.exports = {
   listChannel: function(id) {
     return new Promise((resolve, reject) => {
       var done = false;
-
-      this.Youtube.search.list({
+      var chapters = [];
+      var opts = {
         part: "id, snippet",
-        channelId: id
-      }, (err, data) => {
-        if (err) {
-          console.log(err);
-          reject();
-        } else {
-          // console.log(data);
-          resolve(data);
+        channelId: id,
+        order: "date",
+        maxResults: 50
+      };
+
+      var loop = (publishedBefore) => {
+        if (publishedBefore) {
+          opts.publishedBefore = publishedBefore;
         }
-      });
+
+        this.Youtube.search.list(opts, (err, data) => {
+          if (err) {
+            console.error(err);
+            reject();
+          } else {
+            chapters = chapters.concat(data.items);
+
+            if (data.items.length < 50) {
+              resolve(chapters);
+            } else {
+              loop(data.items.pop().snippet.publishedAt);
+            }
+          }
+        });
+      };
+
+      loop();
     });
   },
 
@@ -67,8 +85,7 @@ module.exports = {
           var channel = res.items[0];
 
           this.listChannel(channel.id).then(res => {
-            console.log(res.items.length);
-            var chapters = res.items.map(chapter => {
+            var chapters = res.map(chapter => {
               return {
                 type:   "youtube",
                 media:  [chapter.id.videoId],
