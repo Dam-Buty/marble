@@ -4,18 +4,30 @@
   "description": "An immersive web-fiction viewer",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --watch"
+    "test": "mocha --watch",
+    "start": "node server.js",
+    "build": "riot --config riot.config -w"
   },
   "author": "Damien BUTY",
   "license": "ISC",
   "dependencies": {
+    "microajax": "^1.0.3",
+    "months": "^1.0.1",
+    "superagent": "^2.0.0-alpha.3",
     "twit": "^2.2.4",
-    "twitter-api": "^1.0.4",
-    "youtube-api": "^2.0.1"
+    "youtube-api": "^2.0.1",
+    "zepto-full": "^1.1.4",
+    "zepto-mirror": "^1.1.4"
   },
   "devDependencies": {
     "better-console": "^0.2.4",
     "chai": "^3.5.0",
-    "mocha": "^2.4.5"
+    "connect": "^3.4.1",
+    "mocha": "^2.4.5",
+    "node-sass": "^3.7.0",
+    "pug": "^2.0.0-alpha7",
+    "riot": "^2.4.0",
+    "sass": "^0.5.0",
+    "serve-static": "^1.10.2"
   }
 }

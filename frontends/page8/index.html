@@ -1,0 +1,25 @@
+<html>
+
+<body>
+
+<!-- mount point -->
+<marble></marble>
+
+<script src="../../node_modules/riot/riot.min.js"></script>
+<script src="../../node_modules/superagent/superagent.js"></script>
+
+<!-- include pre-compiled tags (normal javascript) -->
+<script src="js/app.js"></script>
+
+<!-- mount the same way -->
+<script type="text/javascript">
+superagent
+.get("../../cache/marble-hornets/story.json")
+.end((err, res) => {
+  riot.mount('*', { story: res.body });
+});
+</script>
+
+</body>
+
+</html>

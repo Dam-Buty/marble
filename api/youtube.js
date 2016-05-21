@@ -16,7 +16,6 @@ module.exports = {
           type: "key",
           key: this.key
         });
-
         this.authed = true;
       }
 
