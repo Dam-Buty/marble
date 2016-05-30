@@ -28,14 +28,12 @@
   "days": {
     "19 Jun. 2009": [
       {
-        "type": "youtube",
+        "type": "short-text",
         "media": [
-          null
+          "https://yt3.ggpht.com/-Elqp3YAB3-o/AAAAAAAAAAI/AAAAAAAAAAA/w5vn7FNZSss/s240-c-k-no-rj-c0xffffff/photo.jpg"
         ],
         "date": "2009-06-19T18:57:50.000Z",
-        "title": "Marble Hornets",
-        "text": "",
-        "thumb": "https://yt3.ggpht.com/-Elqp3YAB3-o/AAAAAAAAAAI/AAAAAAAAAAA/w5vn7FNZSss/s240-c-k-no-rj-c0xffffff/photo.jpg",
+        "text": "Channel 'Marble Hornets' is created on Youtube.",
         "account": 1,
         "time": "20:57:50"
       }
@@ -434,14 +432,12 @@
     ],
     "23 Jul. 2009": [
       {
-        "type": "youtube",
+        "type": "short-text",
         "media": [
-          null
+          "https://yt3.ggpht.com/-CGv27jeLK6A/AAAAAAAAAAI/AAAAAAAAAAA/pPPaV76AC3A/s240-c-k-no-rj-c0xffffff/photo.jpg"
         ],
         "date": "2009-07-22T23:13:36.000Z",
-        "title": "totheark",
-        "text": "",
-        "thumb": "https://yt3.ggpht.com/-CGv27jeLK6A/AAAAAAAAAAI/AAAAAAAAAAA/pPPaV76AC3A/s240-c-k-no-rj-c0xffffff/photo.jpg",
+        "text": "Channel 'totheark' is created on Youtube.",
         "account": 2,
         "time": "01:13:36"
       },

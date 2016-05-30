@@ -13,8 +13,8 @@ export default {
       scss: (tagName, css, opts, url) => {
         return sass.renderSync({
           data: css,
-          outputStyle: 'compressed'
-        }).css.toString();         
+          // outputStyle: 'compressed'
+        }).css.toString();
       },
     }
   }

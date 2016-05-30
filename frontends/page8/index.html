@@ -16,7 +16,11 @@
 superagent
 .get("../../cache/marble-hornets/story.json")
 .end((err, res) => {
-  riot.mount('*', { story: res.body });
+  try {
+    riot.mount('*', { story: res.body });
+  } catch(ex) {
+    console.log(ex);
+  }
 });
 </script>
 

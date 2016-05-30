@@ -108,6 +108,7 @@ try {
 } catch (ex) {
   Promise.all(accounts.map(account => crawl(account.type, account.handle)))
   .then(books => {
+    console.log(books);
     weave(books).then(story => {
       var file = path.join(
         __dirname,
@@ -122,7 +123,7 @@ try {
         if (err) throw err;
         console.warn("Woven story saved!");
       });
-    });
+    }).catch(ex => console.error(ex));
   })
   .catch(ex => { console.error(ex); });
 }

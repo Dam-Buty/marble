@@ -9,8 +9,8 @@ marble
       h2 { day }
       widget(
         each="{ chapter in chapters }",
-        chapter="{ chapter }",
-        account="{ accounts[chapter.account] }"
+        account="{ parent.accounts[chapter.account] }",
+        chapter="{ chapter }"
       )
 
   style(type="scss").
@@ -18,11 +18,11 @@ marble
       background-color: black;
 
       header  {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: black;
+        //- position: fixed;
+        //- top: 0;
+        //- left: 0;
+        //- width: 100%;
+        //- background-color: black;
 
         h1 {
           text-align: center;
@@ -36,7 +36,7 @@ marble
         background-image: url("img/frame.png");
         background-size: 90% 100vh;
         background-attachment: fixed;
-        padding-top: 7em;
+        //- padding-top: 1em;
 
         section {
           margin-top: 5em;

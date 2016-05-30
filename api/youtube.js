@@ -62,6 +62,7 @@ module.exports = {
             console.error(err);
             reject();
           } else {
+            // console.log(data.items);
             chapters = chapters.concat(data.items);
 
             if (data.items.length < 50) {
@@ -85,14 +86,28 @@ module.exports = {
 
           this.listChannel(channel.id).then(res => {
             var chapters = res.map(chapter => {
-              return {
-                type:   "youtube",
-                media:  [chapter.id.videoId],
-                date:   new Date(chapter.snippet.publishedAt),
-                title:  chapter.snippet.title,
-                text:   chapter.snippet.description,
-                thumb:  chapter.snippet.thumbnails.high.url
-              };
+              switch(chapter.id.kind) {
+                case "youtube#video":
+                  return {
+                    type:   "youtube",
+                    media:  [chapter.id.videoId],
+                    date:   new Date(chapter.snippet.publishedAt),
+                    title:  chapter.snippet.title,
+                    text:   chapter.snippet.description,
+                    thumb:  chapter.snippet.thumbnails.high.url
+                  };
+                  break;
+
+                case "youtube#channel":
+                  console.log(chapter.snippet.thumbnails);
+                  return {
+                    type:   "short-text",
+                    media:  [chapter.snippet.thumbnails.high.url],
+                    date:   new Date(chapter.snippet.publishedAt),
+                    text:   "Channel '" + chapter.snippet.title + "' is created on Youtube."
+                  };
+                  break;
+              }
             });
 
             console.warn(handle + " crawled");
